@@ -25,7 +25,6 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         loadData()
-
         // Do any additional setup after loading the view.
     }
 
@@ -40,9 +39,7 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     }
     
     func loadRss(_ data: URL) {
-        // XmlParserManager instance/object/variable
         let parser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
-        // Put feed in array
         feeds = parser.feeds as NSArray as! Array
         tableView.reloadData()
     }
@@ -50,15 +47,12 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     @IBAction func refleshClicked(_ sender: UIBarButtonItem) {
         loadData()
     }
-    /*
-    // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 }
 
 extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
@@ -91,8 +85,14 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedFeed = feeds[indexPath.row]
-        // TODO setTitle in First screen
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewControllers = appDelegate.window?.rootViewController?.childViewControllers
+        let filtered: [UIViewController]  = viewControllers?.filter{ item in item is  FirstViewController } ?? Array()
+        guard let controller =  filtered.first, let first = controller as? FirstViewController else {
+            return
+        }
+        let feed = feeds[indexPath.row]
+        first.selectedFeed.text = (feed as AnyObject).object(forKey: "title") as? String
     }
 }
 

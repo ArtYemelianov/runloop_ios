@@ -75,13 +75,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="w8m-1t-hlo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="oQv-6c-weL">
-                            <connections>
-                                <action selector="refleshClicked:" destination="s4M-Xn-3WO" id="huv-GA-af1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="w8m-1t-hlo"/>
                     <connections>
                         <outlet property="tableView" destination="eg1-lZ-jSC" id="uQ8-Ua-VKj"/>
                     </connections>
@@ -177,6 +171,7 @@
         <!--Second-->
         <scene sceneID="FXn-hK-TyR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-Ma-j3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xnt-uV-UgJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="0cn-kT-hhu"/>
                     <toolbarItems/>
@@ -189,7 +184,6 @@
                         <segue destination="s4M-Xn-3WO" kind="relationship" relationship="rootViewController" id="ZFV-tQ-BzY"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-Ma-j3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-561" y="-526"/>
         </scene>
