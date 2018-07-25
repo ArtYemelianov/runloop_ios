@@ -34,7 +34,6 @@ class FirstViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print ("willAppear \(isViewLoaded)")
         self.dateAndTime.text = self.currentTime
         timer.resume()
         
@@ -47,7 +46,6 @@ class FirstViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     /*
      // MARK: - Navigation
