@@ -14,7 +14,7 @@ class SecondTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var date: UILabel!
     
-    func configure(_ model: SecondFeedModel){
+    func configure(_ model: FeedEntry){
         title.text = model.title
         title.numberOfLines = 2
         title.lineBreakMode = .byWordWrapping
@@ -23,8 +23,3 @@ class SecondTableViewCell: UITableViewCell {
     }
 }
 
-class SecondFeedModel {
-    var title: String?
-    var subtitle: String?
-    var date: String?
-}

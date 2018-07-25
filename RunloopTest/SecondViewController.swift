@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import RxSwift
 
 class SecondViewController: UIViewController, XMLParserDelegate {
+    
     private let URL_BUSSINESS_NEWS = "http://feeds.reuters.com/reuters/businessNews"
     private let URL_ENVIRONMENT = "http://feeds.reuters.com/reuters/environment"
     private let URL_ENTERTAIMENT = "http://feeds.reuters.com/reuters/entertainment"
@@ -17,15 +19,17 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
-    fileprivate var feeds: Array<Any> = Array()
     
+    fileprivate var feeds: [FeedEntry] = Array()
+    private lazy var provider = DataProvider()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        loadRss(URL(string: URL_BUSSINESS_NEWS)!)
+        loadRss(URL_BUSSINESS_NEWS)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,16 +37,19 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadRss(_ data: URL) {
-        let parser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
-        feeds = parser.feeds as NSArray as! Array
-        tableView.reloadData()
+    func loadRss(_ data: String) {
+        provider.retrieveData(strUrl: data, callback: { array in
+            print("Callback done for \(array)")
+            self.feeds = array
+            self.tableView.reloadData()
+        })
+       
     }
     @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex  == 0 {
-            loadRss(URL(string: URL_BUSSINESS_NEWS)!)
+            loadRss(URL_BUSSINESS_NEWS)
         }else if sender.selectedSegmentIndex  == 1 {
-            loadRss(URL(string: URL_ENVIRONMENT)!)
+            loadRss(URL_ENVIRONMENT)
         }
     }
     
@@ -76,12 +83,8 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let feed  = feeds[indexPath.row]
-        let model = SecondFeedModel()
-        model.title = (feed as AnyObject).object(forKey: "title") as? String
-        model.subtitle = (feed as AnyObject).object(forKey: "description") as? String
-        model.date = (feed as AnyObject).object(forKey: "pubDate") as? String
         if let item = cell as? SecondTableViewCell {
-            item.configure(model)
+            item.configure(feed)
         }
         return cell
     }
