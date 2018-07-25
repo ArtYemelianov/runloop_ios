@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Presents reader for RSS url
+ It is third-party lib
+ */
 class XmlParserManager: NSObject, XMLParserDelegate {
     
     var parser = XMLParser()

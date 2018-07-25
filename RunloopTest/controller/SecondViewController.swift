@@ -19,7 +19,6 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
-    
     fileprivate var feeds: [FeedEntry] = Array()
     private lazy var provider = DataProvider()
 
@@ -58,15 +57,6 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         }
     }
     
-    @IBAction func refleshClicked(_ sender: UIBarButtonItem) {
-//        loadData()
-    }
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
 }
 
 extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
@@ -101,8 +91,7 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
         guard let controller =  filtered.first, let first = controller as? FirstViewController else {
             return
         }
-        let feed = feeds[indexPath.row]
-        first.selectedFeed.text = (feed as AnyObject).object(forKey: "title") as? String
+        first.selectedFeed.text = feeds[indexPath.row].title
     }
 }
 

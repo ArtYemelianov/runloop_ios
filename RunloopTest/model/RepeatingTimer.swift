@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Presents sheduler that manages a periodic updating in time interval
+ */
 class RepeatingTimer: NSObject {
 
     let timeInterval: TimeInterval

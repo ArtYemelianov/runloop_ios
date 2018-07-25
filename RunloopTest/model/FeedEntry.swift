@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+/**
+ Simple model(structure) holder
+ */
 class FeedEntry: NSObject {
     var title: String?
     var subtitle: String?
