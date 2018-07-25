@@ -37,19 +37,24 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadRss(_ data: String) {
-        provider.retrieveData(strUrl: data, callback: { array in
+    func loadRss(_ data: String...) {
+        let callback: ([FeedEntry]) -> Void = { array in
             print("Callback done for \(array)")
             self.feeds = array
             self.tableView.reloadData()
-        })
+        }
+        if data.count == 1 {
+            provider.retrieveData(strUrl: data[0], callback: callback )
+        }else if data.count == 2 {
+            provider.retrieveData(firstStrUrl: data[0], secondStrUrl: data[1], callback: callback )
+        }
        
     }
     @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex  == 0 {
             loadRss(URL_BUSSINESS_NEWS)
         }else if sender.selectedSegmentIndex  == 1 {
-            loadRss(URL_ENVIRONMENT)
+            loadRss(URL_ENTERTAIMENT, URL_ENVIRONMENT )
         }
     }
     

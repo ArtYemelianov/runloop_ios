@@ -37,11 +37,11 @@ class DataProvider {
     }
     
     /**
-     Retrieves data asynchronously from server by specifc url
+     Creates observable for request
      - Parameter strUrl: Specific url
-     - Parameter callback: Result of retrieving
-     */
-    func retrieveData(strUrl: String, callback: @escaping ([FeedEntry])->Void ) {
+     - Returns: Composed observable object
+    */
+    private func createObservableForRequest(for strUrl: String) -> Observable<[FeedEntry]> {
         let newScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "backgroundJob")
         let observable = Observable<[FeedEntry]>.create( { observer -> Disposable in
             guard let url = strUrl.toURL else {
@@ -60,6 +60,45 @@ class DataProvider {
             .timeout(10, scheduler: scheduler)
             .subscribeOn(newScheduler)
             .observeOn(MainScheduler.instance)
+        return observable
+    }
+    
+    /**
+     Retrieves data asynchronously from server by specifc url
+     - Parameter strUrl: Specific url
+     - Parameter callback: Result of retrieving
+     */
+    func retrieveData(strUrl: String, callback: @escaping ([FeedEntry])->Void ) {
+        createObservableForRequest(for: strUrl)
+        .subscribe(
+            onNext: { [unowned self] array in
+                callback(array)
+            }, onError: {error in
+                print("onError")
+        }, onCompleted: {
+            //do nothing
+            print("onCompleted")
+        }).disposed(by: self.disposeBag)
+    }
+    
+    /**
+     Retrieves data asynchronously from server by specifc url
+     - Parameter firstStrUrl: Specific url for first
+     - Parameter secondStrUrl: Specific url for second
+     - Parameter callback: Result of retrieving
+     */
+    func retrieveData(firstStrUrl: String, secondStrUrl: String, callback: @escaping ([FeedEntry])->Void ) {
+        let newScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "backgroundJob")
+        let first = createObservableForRequest(for: firstStrUrl)
+        let second = createObservableForRequest(for: secondStrUrl)
+        let observable = Observable<[FeedEntry]>.zip(first, second, resultSelector: {
+            (firstResult, secondResult) throws -> [FeedEntry] in
+            return firstResult + secondResult
+        })
+        let disposable =  observable.take(1)
+            .timeout(10, scheduler: scheduler)
+            .subscribeOn(newScheduler)
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { [unowned self] array in
                     callback(array)
@@ -69,7 +108,7 @@ class DataProvider {
                 //do nothing
                 print("onCompleted")
             })
-        observable.disposed(by: self.disposeBag)
+        disposable.disposed(by: self.disposeBag)
     }
     
     deinit {
