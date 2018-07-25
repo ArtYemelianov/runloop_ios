@@ -91,12 +91,6 @@
 				450F5DFD210855470046F870 /* LaunchScreen.storyboard */,
 				450F5E00210855470046F870 /* Info.plist */,
 				450F5DF8210855450046F870 /* RunloopTest.xcdatamodeld */,
-				450F5E07210856C30046F870 /* TabBarViewController.swift */,
-				450F5E092108572C0046F870 /* FirstViewController.swift */,
-				450F5E0B210857390046F870 /* SecondViewController.swift */,
-				450F5E0D21086DB10046F870 /* RepeatingTimer.swift */,
-				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
-				452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */,
 			);
 			path = RunloopTest;
 			sourceTree = "<group>";
@@ -104,6 +98,7 @@
 		452067E12108B82F00F5E9B4 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -111,9 +106,11 @@
 		452067E22108B83700F5E9B4 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				452067E92108BC6D00F5E9B4 /* CacheProvider.swift */,
 				452067E52108B87300F5E9B4 /* DataProvider.swift */,
 				452067E72108B8A000F5E9B4 /* FeedEntry.swift */,
-				452067E92108BC6D00F5E9B4 /* CacheProvider.swift */,
+				450F5E0D21086DB10046F870 /* RepeatingTimer.swift */,
+				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -121,6 +118,9 @@
 		452067E42108B84500F5E9B4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				450F5E092108572C0046F870 /* FirstViewController.swift */,
+				450F5E0B210857390046F870 /* SecondViewController.swift */,
+				450F5E07210856C30046F870 /* TabBarViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
