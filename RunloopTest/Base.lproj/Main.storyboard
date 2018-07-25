@@ -39,9 +39,56 @@
                     <view key="view" contentMode="scaleToFill" id="ach-PJ-hhG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-rz-Txj">
+                                <rect key="frame" x="132.5" y="60" width="111.5" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="XOq-UV-2ES"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="j2X-Ng-dS8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxS-kA-BHf">
+                                <rect key="frame" x="114" y="393" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mER-Ll-TMg">
+                                <rect key="frame" x="132" y="101" width="111.5" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEo-rQ-dZb">
+                                <rect key="frame" x="132" y="142" width="111.5" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mER-Ll-TMg" firstAttribute="width" secondItem="Qfb-rz-Txj" secondAttribute="width" id="CP1-pL-DAz"/>
+                            <constraint firstItem="AEo-rQ-dZb" firstAttribute="centerX" secondItem="ach-PJ-hhG" secondAttribute="centerX" id="FB4-er-WWu"/>
+                            <constraint firstItem="mER-Ll-TMg" firstAttribute="top" secondItem="Qfb-rz-Txj" secondAttribute="bottom" constant="16" id="Sp5-nY-3DM"/>
+                            <constraint firstItem="AEo-rQ-dZb" firstAttribute="width" secondItem="mER-Ll-TMg" secondAttribute="width" id="Ssk-f9-NfD"/>
+                            <constraint firstItem="mER-Ll-TMg" firstAttribute="centerX" secondItem="ach-PJ-hhG" secondAttribute="centerX" id="X1N-Lp-t3Z"/>
+                            <constraint firstItem="AEo-rQ-dZb" firstAttribute="height" secondItem="mER-Ll-TMg" secondAttribute="height" id="ajj-Zu-bJn"/>
+                            <constraint firstItem="Qfb-rz-Txj" firstAttribute="centerX" secondItem="ach-PJ-hhG" secondAttribute="centerX" id="rSw-2R-ehn"/>
+                            <constraint firstItem="AEo-rQ-dZb" firstAttribute="top" secondItem="mER-Ll-TMg" secondAttribute="bottom" constant="16" id="s2H-od-4ce"/>
+                            <constraint firstItem="Qfb-rz-Txj" firstAttribute="top" secondItem="u22-kG-gaC" secondAttribute="bottom" constant="40" id="wIY-wy-fYu"/>
+                            <constraint firstItem="mER-Ll-TMg" firstAttribute="height" secondItem="Qfb-rz-Txj" secondAttribute="height" id="xDY-JR-KRF"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="Whc-JT-ijO"/>
+                    <connections>
+                        <outlet property="dateAndTime" destination="mER-Ll-TMg" id="72B-if-utO"/>
+                        <outlet property="selectedFeed" destination="AEo-rQ-dZb" id="d39-S8-KCM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ez3-pl-RIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -67,7 +114,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="25" height="25"/>
-        <image name="second" width="25" height="25"/>
+        <image name="first" width="33" height="33"/>
+        <image name="second" width="33" height="33"/>
     </resources>
 </document>
