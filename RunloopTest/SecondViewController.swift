@@ -14,18 +14,18 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     private let URL_ENTERTAIMENT = "http://feeds.reuters.com/reuters/entertainment"
     private let feedIdentifier = "feed_identifier"
     
-    fileprivate var feeds: Array<Any> = Array()
-    private var url: URL!
-    
+    @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
+    
+    fileprivate var feeds: Array<Any> = Array()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        loadData()
-        // Do any additional setup after loading the view.
+        loadRss(URL(string: URL_BUSSINESS_NEWS)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,19 +33,21 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadData() {
-        url = URL(string: URL_BUSSINESS_NEWS)!
-        loadRss(url)
-    }
-    
     func loadRss(_ data: URL) {
         let parser : XmlParserManager = XmlParserManager().initWithURL(data) as! XmlParserManager
         feeds = parser.feeds as NSArray as! Array
         tableView.reloadData()
     }
-
+    @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex  == 0 {
+            loadRss(URL(string: URL_BUSSINESS_NEWS)!)
+        }else if sender.selectedSegmentIndex  == 1 {
+            loadRss(URL(string: URL_ENVIRONMENT)!)
+        }
+    }
+    
     @IBAction func refleshClicked(_ sender: UIBarButtonItem) {
-        loadData()
+//        loadData()
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
