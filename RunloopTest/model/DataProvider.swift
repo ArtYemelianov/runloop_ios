@@ -42,33 +42,39 @@ class DataProvider {
      - Parameter callback: Result of retrieving
      */
     func retrieveData(strUrl: String, callback: @escaping ([FeedEntry])->Void ) {
-        
-        var newScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "backgroundJob")
-        Observable<[FeedEntry]>.create( { observer -> Disposable in
-            print("retrieve Data done \(Thread.current.name)")
-            Thread.sleep(forTimeInterval: 1)
+        let newScheduler = SerialDispatchQueueScheduler(internalSerialQueueName: "backgroundJob")
+        let observable = Observable<[FeedEntry]>.create( { observer -> Disposable in
             guard let url = strUrl.toURL else {
                 observer.onNext(Array())
                 observer.onCompleted()
-                return Disposables.create()
+                return Disposables.create(){
+                    
+                }
             }
             let array = self.loadData(for: url)
             observer.onNext(array)
             observer.onCompleted()
             return Disposables.create()
         })
-            
+            .take(1)
+            .timeout(10, scheduler: scheduler)
             .subscribeOn(newScheduler)
             .observeOn(MainScheduler.instance)
-            .timeout(5.0, scheduler: scheduler)
-            .subscribe(onNext: { [unowned self] array in
-                print("onNext done \(Thread.current.name)")
-                callback(array)
+            .subscribe(
+                onNext: { [unowned self] array in
+                    callback(array)
                 }, onError: {error in
-                    print("onError  \(Thread.current.name)")
+                    print("onError")
             }, onCompleted: {
-                print("onCompleted \(Thread.current.name)")
-            }).disposed(by: self.disposeBag)
+                //do nothing
+                print("onCompleted")
+            })
+        observable.disposed(by: self.disposeBag)
+    }
+    
+    deinit {
+        
+        
     }
     
 }
