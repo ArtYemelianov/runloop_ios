@@ -14,15 +14,17 @@ class SecondTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var date: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configure(_ model: SecondFeedModel){
+        title.text = model.title
+        title.numberOfLines = 2
+        title.lineBreakMode = .byWordWrapping
+        subtitle.text = model.subtitle
+        date.text = model.date
     }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+class SecondFeedModel {
+    var title: String?
+    var subtitle: String?
+    var date: String?
 }

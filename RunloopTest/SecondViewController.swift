@@ -22,10 +22,8 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColorFromRGB(rgbValue: 0x00B6ED)
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
         loadData()
 
         // Do any additional setup after loading the view.
@@ -71,31 +69,24 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: feedIdentifier, for: indexPath)
-        let feed  = feeds[indexPath.row]
-        if let item = cell as? SecondTableViewCell {
-//            item.configure(with: device)
-        }
+        
         cell.textLabel?.backgroundColor = UIColor.clear
         cell.detailTextLabel?.backgroundColor = UIColor.clear
         
         if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor(white: 1, alpha: 0.1)
+            cell.backgroundColor = UIColorFromRGB(rgbValue: 0xF0F0F0)
         } else {
-            cell.backgroundColor = UIColor(white: 1, alpha: 0.2)
+            cell.backgroundColor = UIColor.clear
         }
         
-        let cellImageLayer: CALayer?  = cell.imageView?.layer
-        cellImageLayer!.cornerRadius = 35
-        cellImageLayer!.masksToBounds = true
-        //        cell.imageView?.image = image
-        cell.textLabel?.text = (feeds[indexPath.row] as AnyObject).object(forKey: "title") as? String
-        cell.textLabel?.textColor = UIColor.white
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        
-        cell.detailTextLabel?.text = (feeds[indexPath.row] as AnyObject).object(forKey: "pubDate") as? String
-        cell.detailTextLabel?.textColor = UIColor.white
-        
+        let feed  = feeds[indexPath.row]
+        let model = SecondFeedModel()
+        model.title = (feed as AnyObject).object(forKey: "title") as? String
+        model.subtitle = (feed as AnyObject).object(forKey: "description") as? String
+        model.date = (feed as AnyObject).object(forKey: "pubDate") as? String
+        if let item = cell as? SecondTableViewCell {
+            item.configure(model)
+        }
         return cell
     }
     
