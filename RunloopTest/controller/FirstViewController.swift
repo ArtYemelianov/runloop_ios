@@ -12,41 +12,43 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var dateAndTime: UILabel!
     @IBOutlet weak var selectedFeed: UILabel!
-    private var isAppeared = false
-    private lazy var timer: RepeatingTimer = {
-        return RepeatingTimer(timeInterval: 1)
-    }()
-    
-    private var currentTime : String {
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from: Date())
-        return dateString
-    }
+    private lazy var timer: RxRepeatingTimer = RxRepeatingTimer(id: "date_timer", timeinterval: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer.eventHandler = {
-            DispatchQueue.main.async {
-                self.dateAndTime.text = self.currentTime
-            }
-        }
+        timer.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.dateAndTime.text = self.currentTime
-        timer.resume()
+        timer.start()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        timer.suspend()
+        timer.stop()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+}
+
+extension FirstViewController {
+    fileprivate var currentTime : String {
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
+        let dateString = dateFormatter.string(from: Date())
+        return dateString
+    }
+}
+
+extension FirstViewController: RxRepeatingTimerDelegate {
+    func onNext(id: String) {
+        DispatchQueue.main.async {
+            self.dateAndTime.text = self.currentTime
+        }
+    }
 }

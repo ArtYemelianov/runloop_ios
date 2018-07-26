@@ -16,7 +16,6 @@
 		450F5E08210856C30046F870 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F5E07210856C30046F870 /* TabBarViewController.swift */; };
 		450F5E0A2108572C0046F870 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F5E092108572C0046F870 /* FirstViewController.swift */; };
 		450F5E0C210857390046F870 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F5E0B210857390046F870 /* SecondViewController.swift */; };
-		450F5E0E21086DB10046F870 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F5E0D21086DB10046F870 /* RepeatingTimer.swift */; };
 		452067DE2108846300F5E9B4 /* XmlParserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067DD2108846300F5E9B4 /* XmlParserManager.swift */; };
 		452067E02108852A00F5E9B4 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */; };
 		452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E52108B87300F5E9B4 /* DataProvider.swift */; };
@@ -41,7 +40,6 @@
 		450F5E07210856C30046F870 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		450F5E092108572C0046F870 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		450F5E0B210857390046F870 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		450F5E0D21086DB10046F870 /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		452067DD2108846300F5E9B4 /* XmlParserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmlParserManager.swift; sourceTree = "<group>"; };
 		452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		452067E52108B87300F5E9B4 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 			children = (
 				452067E52108B87300F5E9B4 /* DataProvider.swift */,
 				452067E72108B8A000F5E9B4 /* FeedEntry.swift */,
-				450F5E0D21086DB10046F870 /* RepeatingTimer.swift */,
 				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
 				4576B76321099B8E0070657F /* RxRepeatingTimer.swift */,
 				4576B7652109B2520070657F /* SecondModel.swift */,
@@ -272,7 +269,6 @@
 				4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */,
 				452067E02108852A00F5E9B4 /* SecondTableViewCell.swift in Sources */,
 				450F5DFA210855450046F870 /* RunloopTest.xcdatamodeld in Sources */,
-				450F5E0E21086DB10046F870 /* RepeatingTimer.swift in Sources */,
 				450F5DF2210855450046F870 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
