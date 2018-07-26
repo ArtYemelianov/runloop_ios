@@ -21,6 +21,7 @@
 		452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E52108B87300F5E9B4 /* DataProvider.swift */; };
 		452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E72108B8A000F5E9B4 /* FeedEntry.swift */; };
 		4544A2822109F5C600AAF807 /* SecondRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544A2812109F5C600AAF807 /* SecondRefreshView.swift */; };
+		4544A284210A043A00AAF807 /* FirstModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544A283210A043A00AAF807 /* FirstModel.swift */; };
 		4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B76321099B8E0070657F /* RxRepeatingTimer.swift */; };
 		4576B7662109B2520070657F /* SecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7652109B2520070657F /* SecondModel.swift */; };
 		4576B7682109C9930070657F /* TimerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7672109C9930070657F /* TimerFacade.swift */; };
@@ -47,6 +48,7 @@
 		452067E52108B87300F5E9B4 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		452067E72108B8A000F5E9B4 /* FeedEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntry.swift; sourceTree = "<group>"; };
 		4544A2812109F5C600AAF807 /* SecondRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRefreshView.swift; sourceTree = "<group>"; };
+		4544A283210A043A00AAF807 /* FirstModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstModel.swift; sourceTree = "<group>"; };
 		4576B76321099B8E0070657F /* RxRepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRepeatingTimer.swift; sourceTree = "<group>"; };
 		4576B7652109B2520070657F /* SecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModel.swift; sourceTree = "<group>"; };
 		4576B7672109C9930070657F /* TimerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFacade.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		450F5DF0210855450046F870 /* RunloopTest */ = {
 			isa = PBXGroup;
 			children = (
+				4544A285210A0ADA00AAF807 /* general */,
 				452067E22108B83700F5E9B4 /* model */,
 				452067E12108B82F00F5E9B4 /* view */,
 				452067E42108B84500F5E9B4 /* controller */,
@@ -113,12 +116,9 @@
 		452067E22108B83700F5E9B4 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				452067E52108B87300F5E9B4 /* DataProvider.swift */,
 				452067E72108B8A000F5E9B4 /* FeedEntry.swift */,
-				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
-				4576B76321099B8E0070657F /* RxRepeatingTimer.swift */,
+				4544A283210A043A00AAF807 /* FirstModel.swift */,
 				4576B7652109B2520070657F /* SecondModel.swift */,
-				4576B7672109C9930070657F /* TimerFacade.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -126,12 +126,23 @@
 		452067E42108B84500F5E9B4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				4576B7692109D21C0070657F /* DescriptionViewController.swift */,
 				450F5E092108572C0046F870 /* FirstViewController.swift */,
 				450F5E0B210857390046F870 /* SecondViewController.swift */,
 				450F5E07210856C30046F870 /* TabBarViewController.swift */,
-				4576B7692109D21C0070657F /* DescriptionViewController.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		4544A285210A0ADA00AAF807 /* general */ = {
+			isa = PBXGroup;
+			children = (
+				452067E52108B87300F5E9B4 /* DataProvider.swift */,
+				4576B76321099B8E0070657F /* RxRepeatingTimer.swift */,
+				4576B7672109C9930070657F /* TimerFacade.swift */,
+				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
+			);
+			path = general;
 			sourceTree = "<group>";
 		};
 		4563E1813D2618AF6C549185 /* Pods */ = {
@@ -267,6 +278,7 @@
 				4544A2822109F5C600AAF807 /* SecondRefreshView.swift in Sources */,
 				4576B76A2109D21C0070657F /* DescriptionViewController.swift in Sources */,
 				452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */,
+				4544A284210A043A00AAF807 /* FirstModel.swift in Sources */,
 				450F5E0A2108572C0046F870 /* FirstViewController.swift in Sources */,
 				452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */,
 				4576B7662109B2520070657F /* SecondModel.swift in Sources */,

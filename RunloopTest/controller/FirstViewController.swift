@@ -12,43 +12,42 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var dateAndTime: UILabel!
     @IBOutlet weak var selectedFeed: UILabel!
-    private lazy var timer: RxRepeatingTimer = RxRepeatingTimer(id: "date_timer", timeinterval: 1)
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    private lazy var model : FirstModel = {
+        return FirstModel.shared()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer.delegate = self
+        setup()
+    }
+    
+    /**
+     Sets MVC modules
+    */
+    private func setup(){
+        model.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.dateAndTime.text = self.currentTime
-        timer.start()
+        dateAndTime.text = model.formattedData
+        selectedFeed.text = model.titleFeed
+        nameLabel.text = model.name
+        model.willAppear()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        timer.stop()
+        model.willDisappear()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
-extension FirstViewController {
-    fileprivate var currentTime : String {
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from: Date())
-        return dateString
-    }
-}
-
-extension FirstViewController: RxRepeatingTimerDelegate {
-    func onNext(id: String) {
-        DispatchQueue.main.async {
-            self.dateAndTime.text = self.currentTime
-        }
+extension FirstViewController: FirstModelDelegate {
+    func onNextTick() {
+        self.dateAndTime.text = self.model.formattedData
     }
 }

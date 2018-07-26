@@ -9,7 +9,7 @@
 import RxSwift
 
 /**
-Presents data for controller. It is respondible for model in MVC patterns
+Presents data for controller. It is respondible for suppling of data to model
  */
 class DataProvider {
     private var scheduler: ConcurrentDispatchQueueScheduler!

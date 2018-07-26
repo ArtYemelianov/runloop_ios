@@ -47,32 +47,22 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         model.delegate = self
     }
     
-    @objc func completed(){
-        // ends refleshing at once after swiping happened
-        self.refreshView.disappear()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         model.willAppear()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     /**
      Retrieves newest data
      */
-    func retrieveData(for segment: Segment) -> [FeedEntry]{
+    private func retrieveData(for segment: Segment) -> [FeedEntry]{
         let arrayUrl = recognizeSegment(for: segment)
         let arrayFeeds = model.retrieveNewestData(for: arrayUrl)
         let result = arrayFeeds.flatMap{ $0}
         return result
     }
     
-    func update() {
+    fileprivate func update() {
         feeds = retrieveData(for: Segment.segmentForIndex(index: segmentedView.selectedSegmentIndex)!)
         self.tableView.reloadData()
     }
@@ -133,7 +123,7 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
         guard let controller =  filtered.first, let first = controller as? FirstViewController else {
             return
         }
-        first.selectedFeed.text = feeds[indexPath.row].title
+        model.selectedFeed = feeds[indexPath.row]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

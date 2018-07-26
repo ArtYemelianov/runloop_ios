@@ -34,6 +34,11 @@ class SecondModel  {
     
     private var atomicMonitor = DispatchQueue(label: "atomic")
     private var counter: Int32 = 0
+    var selectedFeed: FeedEntry? {
+        didSet{
+            FirstModel.shared().feed = selectedFeed
+        }
+    }
     
     init() {
         timer = TimerFacade()
@@ -51,8 +56,8 @@ class SecondModel  {
             return rxTimer
         }
         timer.timers.append(composeRxTimer(url: URL_BUSSINESS_NEWS))
-//        timer.timers.append(composeRxTimer(url: URL_ENVIRONMENT))
-//        timer.timers.append(composeRxTimer(url: URL_ENTERTAIMENT))
+        timer.timers.append(composeRxTimer(url: URL_ENVIRONMENT))
+        timer.timers.append(composeRxTimer(url: URL_ENTERTAIMENT))
     }
 
     func willAppear(){

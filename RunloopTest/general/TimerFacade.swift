@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- Pattern Facede for specific set of timers
+ Pattern Facade for specific set of timers
  */
 class TimerFacade: RepeatingTimerProtocol {
     var timers : [RepeatingTimerProtocol] = Array()
