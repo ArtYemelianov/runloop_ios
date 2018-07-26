@@ -18,6 +18,8 @@ let URL_ENTERTAIMENT = "http://feeds.reuters.com/reuters/entertainment"
  */
 protocol SecondModelDelegate {
     func onUpdated(for: String)
+    func onFetchingStarted()
+    func onFetchingFinished()
 }
 
 /**
@@ -29,6 +31,9 @@ class SecondModel  {
     public var delegate: SecondModelDelegate?
     private let provider: DataProvider
     private var map =  [String: [FeedEntry]]()
+    
+    private var atomicMonitor = DispatchQueue(label: "atomic")
+    private var counter: Int32 = 0
     
     init() {
         timer = TimerFacade()
@@ -46,8 +51,8 @@ class SecondModel  {
             return rxTimer
         }
         timer.timers.append(composeRxTimer(url: URL_BUSSINESS_NEWS))
-        timer.timers.append(composeRxTimer(url: URL_ENVIRONMENT))
-        timer.timers.append(composeRxTimer(url: URL_ENTERTAIMENT))
+//        timer.timers.append(composeRxTimer(url: URL_ENVIRONMENT))
+//        timer.timers.append(composeRxTimer(url: URL_ENTERTAIMENT))
     }
 
     func willAppear(){
@@ -73,18 +78,62 @@ class SecondModel  {
             return { array in
                 self.map[url] = array
                 self.delegate?.onUpdated(for: url)
+                self.decreaseCounter()
             }
         }
+        
+        increaseCounter()
         provider.retrieveData(strUrl: URL_BUSSINESS_NEWS, callback: composeCallback(url: URL_BUSSINESS_NEWS))
+        
+        increaseCounter()
         provider.retrieveData(strUrl: URL_ENVIRONMENT, callback: composeCallback(url: URL_ENVIRONMENT))
+        
+        increaseCounter()
         provider.retrieveData(strUrl: URL_ENTERTAIMENT, callback: composeCallback(url: URL_ENTERTAIMENT))
+    }
+    
+    /**
+     Notify controller about fetching status changed.
+     - Parameter status: If status is in fetching - true. Otherwise - false
+     */
+    fileprivate func notifyFetchingStatus(status: Bool) {
+        if status{
+            DispatchQueue.main.async {
+                self.delegate?.onFetchingStarted()
+            }
+        }else {
+            DispatchQueue.main.async {
+                self.delegate?.onFetchingFinished()            }
+        }
     }
 }
 
 extension SecondModel: RxRepeatingTimerDelegate{
     
+    fileprivate func increaseCounter(){
+        atomicMonitor.sync {
+            counter += 1
+            if counter == 1 {
+                notifyFetchingStatus(status: true)
+            }
+        }
+    }
+    
+    fileprivate func decreaseCounter(){
+        atomicMonitor.sync {
+            counter -= 1
+            if counter == 0 {
+                notifyFetchingStatus(status: false)
+            }else if counter < 0 {
+                fatalError("Counter is less than zero")
+            }
+        }
+    }
+    
     func onNext(id : String) {
         // makes request to server synchronously
+        increaseCounter()
+        
         let disposable = provider.createRxFeedEntry(for: id)
             .take(1)
             .timeout(10, scheduler: MainScheduler.instance)
@@ -95,8 +144,11 @@ extension SecondModel: RxRepeatingTimerDelegate{
                     self.map[id] = array
             }, onError: { error in
                 // TODO handle timeout is over
+                print("Error Timeoout is over for \(id)")
             })
         disposable.dispose()
+        
+        decreaseCounter()
         
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.onUpdated(for: id)

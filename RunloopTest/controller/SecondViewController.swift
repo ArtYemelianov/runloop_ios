@@ -28,6 +28,7 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     
     @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
+    var refresher: UIRefreshControl!
     
     private var feeds: [FeedEntry] = Array()
     
@@ -36,6 +37,11 @@ class SecondViewController: UIViewController, XMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refresher = UIRefreshControl()
+        tableView.addSubview(refresher)
+        refresher.tintColor = UIColorFromRGB(rgbValue: 0x0f0f0f )
+        refresher.addTarget(self, action: #selector(completed), for: .valueChanged)
+
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -43,9 +49,15 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         model.delegate = self
     }
     
+    @objc func completed(){
+        // ends refleshing at once after swiping happened
+        self.refresher!.endRefreshing()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         model.willAppear()
+        refresher.beginRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,9 +138,21 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
         }
         first.selectedFeed.text = feeds[indexPath.row].title
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 }
 
 extension SecondViewController: SecondModelDelegate {
+    func onFetchingStarted() {
+        refresher.beginRefreshing()
+    }
+    
+    func onFetchingFinished() {
+        refresher.endRefreshing()
+    }
+    
     func onUpdated(for url: String) {
         guard let segment = recognizeURL(for: url),
             let current = segmentedView.currentSegment else {

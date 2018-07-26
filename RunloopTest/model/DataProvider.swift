@@ -51,7 +51,6 @@ class DataProvider {
                 observer.onNext(Array())
                 observer.onCompleted()
                 return Disposables.create(){
-                    
                 }
             }
             let array = self.loadData(for: url)
@@ -84,6 +83,9 @@ class DataProvider {
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { array in callback(array)
+            }, onError : { error in
+                print("Timeout is over for \(strUrl)")
+                callback(Array())
             }).disposed(by: self.disposeBag)
     }
     
@@ -105,11 +107,14 @@ class DataProvider {
             return firstResult + secondResult
         })
         let disposable =  observable.take(1)
-            .timeout(10, scheduler: scheduler)
+            .timeout(10, scheduler: MainScheduler.instance)
             .subscribeOn(scheduler)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { array in callback(array)
+            }, onError : { error in
+                print("Timeout is over for \(firstStrUrl) and \(secondStrUrl)")
+                callback(Array())
             })
         disposable.disposed(by: disposeBag)
     }
