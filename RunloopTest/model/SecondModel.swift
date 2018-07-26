@@ -37,6 +37,7 @@ class SecondModel  {
     }
     
     /**
+     Sets timers
     */
     private func setup(){
         func composeRxTimer(url : String) -> RxRepeatingTimer {
@@ -65,7 +66,7 @@ class SecondModel  {
     }
     
     /**
-     Makes a fetching for all urls
+     Makes the fetching for all urls
     */
     private func makeFetchNow(){
         func composeCallback(url :String) -> (([FeedEntry]) -> Void) {
@@ -83,18 +84,17 @@ class SecondModel  {
 extension SecondModel: RxRepeatingTimerDelegate{
     
     func onNext(id : String) {
-        //TODO get request to server asynchroniously
+        // makes request to server synchronously
         let disposable = provider.createRxFeedEntry(for: id)
             .take(1)
             .timeout(10, scheduler: MainScheduler.instance)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { array in
-                    print("Done for next and retrieving feeds")
                     // it is safety operation because the map alters and is read only in main thread
                     self.map[id] = array
             }, onError: { error in
-                print("Error happens \(error)")
+                // TODO handle timeout is over
             })
         disposable.dispose()
         

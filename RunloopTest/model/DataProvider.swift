@@ -10,7 +10,6 @@ import RxSwift
 
 /**
 Presents data for controller. It is respondible for model in MVC patterns
-TODO It is necessary to implement FeedCache which keeps stored date from server and more safety for reading from controller
  */
 class DataProvider {
     private var scheduler: ConcurrentDispatchQueueScheduler!

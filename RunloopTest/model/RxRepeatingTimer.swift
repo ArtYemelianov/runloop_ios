@@ -12,7 +12,7 @@ import RxSwift
 /**
  Delegate for timer
  */
-protocol RxRepeatingTimerDelegate{
+@objc protocol RxRepeatingTimerDelegate{
     /**
      Triggers the timer done
      
@@ -26,7 +26,7 @@ protocol RxRepeatingTimerDelegate{
 
 protocol RepeatingTimerProtocol {
     /**
-     Starts a new timer
+     Starts a new timer`
      */
     func start()
     
@@ -40,7 +40,7 @@ protocol RepeatingTimerProtocol {
  Presents repeating timer which works in rx principles
  */
 class RxRepeatingTimer: RepeatingTimerProtocol{
-    public var delegate: RxRepeatingTimerDelegate?
+    public weak var delegate: RxRepeatingTimerDelegate?
     
     public let scheduler : SerialDispatchQueueScheduler
     private var dispose: Disposable?
