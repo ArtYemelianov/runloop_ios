@@ -9,18 +9,29 @@
 import UIKit
 import RxSwift
 
+enum Segment{
+    case first
+    case second
+    
+    /**
+     First segment for index
+     - Parameter index: Index of SegmentControl
+    */
+    static func segmentForIndex(index: Int) -> Segment?{
+        return index == 0 ? .first : (index == 1 ? .second : nil)
+    }
+}
+
 class SecondViewController: UIViewController, XMLParserDelegate {
     
-    private let URL_BUSSINESS_NEWS = "http://feeds.reuters.com/reuters/businessNews"
-    private let URL_ENVIRONMENT = "http://feeds.reuters.com/reuters/environment"
-    private let URL_ENTERTAIMENT = "http://feeds.reuters.com/reuters/entertainment"
     private let feedIdentifier = "feed_identifier"
     
     @IBOutlet weak var segmentedView: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     
-    fileprivate var feeds: [FeedEntry] = Array()
-    private lazy var provider = DataProvider()
+    private var feeds: [FeedEntry] = Array()
+    
+    fileprivate lazy var model: SecondModel = SecondModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +39,13 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        loadRss(URL_BUSSINESS_NEWS)
+        
+        model.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        model.willAppear()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,27 +53,25 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadRss(_ data: String...) {
-        let callback: ([FeedEntry]) -> Void = { array in
-            print("Callback done for \(array)")
-            self.feeds = array
-            self.tableView.reloadData()
-        }
-        if data.count == 1 {
-            provider.retrieveData(strUrl: data[0], callback: callback )
-        }else if data.count == 2 {
-            provider.retrieveData(firstStrUrl: data[0], secondStrUrl: data[1], callback: callback )
-        }
-       
-    }
-    @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex  == 0 {
-            loadRss(URL_BUSSINESS_NEWS)
-        }else if sender.selectedSegmentIndex  == 1 {
-            loadRss(URL_ENTERTAIMENT, URL_ENVIRONMENT )
-        }
+    /**
+     Retrieves newest data
+     */
+    func retrieveData(for segment: Segment) -> [FeedEntry]{
+        let arrayUrl = recognizeSegment(for: segment)
+        let arrayFeeds = model.retrieveNewestData(for: arrayUrl)
+        let result = arrayFeeds.flatMap{ $0}
+        return result
     }
     
+    func update() {
+        feeds = retrieveData(for: Segment.segmentForIndex(index: segmentedView.selectedSegmentIndex)!)
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func segmentedValueChanged(_ sender: UISegmentedControl) {
+        // forbid retrieveing data HERE according condition of test task therefore we only retrieve store data
+        update()
+    }
 }
 
 extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
@@ -95,6 +110,18 @@ extension SecondViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension SecondViewController: SecondModelDelegate {
+    func onUpdated(for url: String) {
+        guard let segment = recognizeURL(for: url),
+            let current = segmentedView.currentSegment else {
+                return
+        }
+        if segment != current || feeds.isEmpty {
+            update()
+        }
+    }
+}
+
 extension SecondViewController {
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -105,4 +132,29 @@ extension SecondViewController {
         )
     }
     
+    func recognizeURL(for strUrl: String) -> Segment? {
+        if strUrl == URL_BUSSINESS_NEWS { return .first }
+        else if strUrl == URL_ENVIRONMENT || strUrl == URL_ENTERTAIMENT { return .second }
+        else { return nil }
+    }
+    
+    func recognizeSegment(for segment: Segment) -> [String] {
+        if segment == .first {
+            return [URL_BUSSINESS_NEWS]
+        }
+        else if segment == .second {
+            return [URL_ENTERTAIMENT , URL_ENVIRONMENT]
+        }else {
+            return Array()
+        }
+    }
+    
 }
+
+extension UISegmentedControl {
+    var currentSegment: Segment? {
+        return Segment.segmentForIndex(index: selectedSegmentIndex)
+    }
+    
+}
+

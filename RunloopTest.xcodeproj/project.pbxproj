@@ -21,6 +21,9 @@
 		452067E02108852A00F5E9B4 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */; };
 		452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E52108B87300F5E9B4 /* DataProvider.swift */; };
 		452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E72108B8A000F5E9B4 /* FeedEntry.swift */; };
+		4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B76321099B8E0070657F /* RxRepeatingTimer.swift */; };
+		4576B7662109B2520070657F /* SecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7652109B2520070657F /* SecondModel.swift */; };
+		4576B7682109C9930070657F /* TimerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7672109C9930070657F /* TimerFacade.swift */; };
 		DEBBE8E1DE00487C27E6B0C0 /* Pods_RunloopTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082B892F16E7EBB5C0801579 /* Pods_RunloopTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		452067E52108B87300F5E9B4 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		452067E72108B8A000F5E9B4 /* FeedEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntry.swift; sourceTree = "<group>"; };
+		4576B76321099B8E0070657F /* RxRepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRepeatingTimer.swift; sourceTree = "<group>"; };
+		4576B7652109B2520070657F /* SecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModel.swift; sourceTree = "<group>"; };
+		4576B7672109C9930070657F /* TimerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFacade.swift; sourceTree = "<group>"; };
 		4A7EC7CB16453C356E30927A /* Pods-RunloopTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunloopTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunloopTest/Pods-RunloopTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +114,9 @@
 				452067E72108B8A000F5E9B4 /* FeedEntry.swift */,
 				450F5E0D21086DB10046F870 /* RepeatingTimer.swift */,
 				452067DD2108846300F5E9B4 /* XmlParserManager.swift */,
+				4576B76321099B8E0070657F /* RxRepeatingTimer.swift */,
+				4576B7652109B2520070657F /* SecondModel.swift */,
+				4576B7672109C9930070657F /* TimerFacade.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -255,9 +264,12 @@
 				452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */,
 				450F5E0A2108572C0046F870 /* FirstViewController.swift in Sources */,
 				452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */,
+				4576B7662109B2520070657F /* SecondModel.swift in Sources */,
+				4576B7682109C9930070657F /* TimerFacade.swift in Sources */,
 				452067DE2108846300F5E9B4 /* XmlParserManager.swift in Sources */,
 				450F5E08210856C30046F870 /* TabBarViewController.swift in Sources */,
 				450F5DF4210855450046F870 /* ViewController.swift in Sources */,
+				4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */,
 				452067E02108852A00F5E9B4 /* SecondTableViewCell.swift in Sources */,
 				450F5DFA210855450046F870 /* RunloopTest.xcdatamodeld in Sources */,
 				450F5E0E21086DB10046F870 /* RepeatingTimer.swift in Sources */,
