@@ -20,6 +20,7 @@
 		452067E02108852A00F5E9B4 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */; };
 		452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E52108B87300F5E9B4 /* DataProvider.swift */; };
 		452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452067E72108B8A000F5E9B4 /* FeedEntry.swift */; };
+		4544A2822109F5C600AAF807 /* SecondRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544A2812109F5C600AAF807 /* SecondRefreshView.swift */; };
 		4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B76321099B8E0070657F /* RxRepeatingTimer.swift */; };
 		4576B7662109B2520070657F /* SecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7652109B2520070657F /* SecondModel.swift */; };
 		4576B7682109C9930070657F /* TimerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7672109C9930070657F /* TimerFacade.swift */; };
@@ -45,6 +46,7 @@
 		452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		452067E52108B87300F5E9B4 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		452067E72108B8A000F5E9B4 /* FeedEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEntry.swift; sourceTree = "<group>"; };
+		4544A2812109F5C600AAF807 /* SecondRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRefreshView.swift; sourceTree = "<group>"; };
 		4576B76321099B8E0070657F /* RxRepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRepeatingTimer.swift; sourceTree = "<group>"; };
 		4576B7652109B2520070657F /* SecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModel.swift; sourceTree = "<group>"; };
 		4576B7672109C9930070657F /* TimerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFacade.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				452067DF2108852A00F5E9B4 /* SecondTableViewCell.swift */,
+				4544A2812109F5C600AAF807 /* SecondRefreshView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				450F5E0C210857390046F870 /* SecondViewController.swift in Sources */,
+				4544A2822109F5C600AAF807 /* SecondRefreshView.swift in Sources */,
 				4576B76A2109D21C0070657F /* DescriptionViewController.swift in Sources */,
 				452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */,
 				450F5E0A2108572C0046F870 /* FirstViewController.swift in Sources */,
