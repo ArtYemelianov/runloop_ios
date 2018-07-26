@@ -40,9 +40,9 @@ protocol RepeatingTimerProtocol {
  Presents repeating timer which works in rx principles
  */
 class RxRepeatingTimer: RepeatingTimerProtocol{
-    public weak var delegate: RxRepeatingTimerDelegate?
+    weak var delegate: RxRepeatingTimerDelegate?
     
-    public let scheduler : SerialDispatchQueueScheduler
+    let scheduler : SerialDispatchQueueScheduler
     private var dispose: Disposable?
     
     fileprivate let timeinterval: TimeInterval

@@ -12,7 +12,7 @@ import UIKit
  Pattern Facede for specific set of timers
  */
 class TimerFacade: RepeatingTimerProtocol {
-    public var timers : [RepeatingTimerProtocol] = Array()
+    var timers : [RepeatingTimerProtocol] = Array()
     
     func start() {
         timers.forEach{ item in
