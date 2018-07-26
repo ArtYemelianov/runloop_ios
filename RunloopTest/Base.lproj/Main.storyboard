@@ -44,7 +44,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nef-WD-Pvv">
-                                                    <rect key="frame" x="23" y="19" width="297" height="34"/>
+                                                    <rect key="frame" x="23" y="19" width="329" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="SOq-fV-Xya"/>
                                                     </constraints>
@@ -53,7 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WY5-N3-eHF">
-                                                    <rect key="frame" x="23" y="61" width="297" height="21"/>
+                                                    <rect key="frame" x="23" y="61" width="329" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AEa-t2-Mlg"/>
                                                     </constraints>
@@ -62,7 +62,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3F0-oM-U2Z">
-                                                    <rect key="frame" x="23" y="90" width="297" height="21"/>
+                                                    <rect key="frame" x="23" y="90" width="329" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="XYV-rP-ihr"/>
                                                     </constraints>
@@ -88,6 +88,7 @@
                                             <outlet property="date" destination="3F0-oM-U2Z" id="rzs-xT-VhI"/>
                                             <outlet property="subtitle" destination="WY5-N3-eHF" id="xI2-Pv-2vG"/>
                                             <outlet property="title" destination="Nef-WD-Pvv" id="pHC-5D-6EE"/>
+                                            <segue destination="YdC-24-vtx" kind="show" identifier="show_description" id="tJV-ZU-5Vm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -113,6 +114,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3b-Ci-Q6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="686" y="-527"/>
+        </scene>
+        <!--Description-->
+        <scene sceneID="H87-Lr-5dd">
+            <objects>
+                <viewController title="Description" id="YdC-24-vtx" customClass="DescriptionViewController" customModule="RunloopTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FRe-SF-c2x"/>
+                        <viewControllerLayoutGuide type="bottom" id="09O-80-ail"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5sl-YH-CnN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1e-Z7-cF8">
+                                <rect key="frame" x="24" y="72" width="327" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="x1e-Z7-cF8" firstAttribute="top" secondItem="FRe-SF-c2x" secondAttribute="bottom" constant="8" id="1oq-AU-XgS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x1e-Z7-cF8" secondAttribute="trailing" constant="8" id="LcR-z9-wvS"/>
+                            <constraint firstItem="x1e-Z7-cF8" firstAttribute="leading" secondItem="5sl-YH-CnN" secondAttribute="leadingMargin" constant="8" id="bPU-yW-QbY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="x1e-Z7-cF8" id="oYL-NJ-KWa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BW0-Ec-Ts2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="-528"/>
         </scene>
         <!--First-->
         <scene sceneID="kYj-3W-fUK">
@@ -201,7 +236,6 @@
         <!--Second-->
         <scene sceneID="FXn-hK-TyR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-Ma-j3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xnt-uV-UgJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="0cn-kT-hhu"/>
                     <toolbarItems/>
@@ -214,6 +248,7 @@
                         <segue destination="Q1b-oR-zfJ" kind="relationship" relationship="rootViewController" id="gzn-Fk-6VH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-Ma-j3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-561" y="-526"/>
         </scene>

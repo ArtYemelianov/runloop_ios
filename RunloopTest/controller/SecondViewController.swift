@@ -72,6 +72,24 @@ class SecondViewController: UIViewController, XMLParserDelegate {
         // forbid retrieveing data HERE according condition of test task therefore we only retrieve store data
         update()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+            
+        case DescriptionViewController.description_identifier:
+            guard let cell = sender as? SecondTableViewCell,
+                let indexPath = tableView.indexPath(for: cell)
+                else {
+                return
+            }
+            let controller  = segue.destination as! DescriptionViewController
+            controller.feed = feeds[indexPath.row]
+        default: break
+            //do nothing
+        }
+    }
 }
 
 extension SecondViewController: UITableViewDataSource, UITableViewDelegate {

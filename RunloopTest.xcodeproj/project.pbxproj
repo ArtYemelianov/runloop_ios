@@ -23,6 +23,7 @@
 		4576B76421099B8E0070657F /* RxRepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B76321099B8E0070657F /* RxRepeatingTimer.swift */; };
 		4576B7662109B2520070657F /* SecondModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7652109B2520070657F /* SecondModel.swift */; };
 		4576B7682109C9930070657F /* TimerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7672109C9930070657F /* TimerFacade.swift */; };
+		4576B76A2109D21C0070657F /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576B7692109D21C0070657F /* DescriptionViewController.swift */; };
 		DEBBE8E1DE00487C27E6B0C0 /* Pods_RunloopTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082B892F16E7EBB5C0801579 /* Pods_RunloopTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		4576B76321099B8E0070657F /* RxRepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxRepeatingTimer.swift; sourceTree = "<group>"; };
 		4576B7652109B2520070657F /* SecondModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModel.swift; sourceTree = "<group>"; };
 		4576B7672109C9930070657F /* TimerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFacade.swift; sourceTree = "<group>"; };
+		4576B7692109D21C0070657F /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		4A7EC7CB16453C356E30927A /* Pods-RunloopTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunloopTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunloopTest/Pods-RunloopTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 				450F5E092108572C0046F870 /* FirstViewController.swift */,
 				450F5E0B210857390046F870 /* SecondViewController.swift */,
 				450F5E07210856C30046F870 /* TabBarViewController.swift */,
+				4576B7692109D21C0070657F /* DescriptionViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				450F5E0C210857390046F870 /* SecondViewController.swift in Sources */,
+				4576B76A2109D21C0070657F /* DescriptionViewController.swift in Sources */,
 				452067E82108B8A000F5E9B4 /* FeedEntry.swift in Sources */,
 				450F5E0A2108572C0046F870 /* FirstViewController.swift in Sources */,
 				452067E62108B87300F5E9B4 /* DataProvider.swift in Sources */,
